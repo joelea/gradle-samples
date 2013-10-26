@@ -1,0 +1,25 @@
+apply plugin: 'scala'
+apply plugin: 'idea'
+apply plugin: 'maven'
+
+repositories {
+  mavenCentral()
+}
+
+compileScala {
+  scalaCompileOptions.useCompileDaemon = true
+  scalaCompileOptions.daemonServer = "localhost:4243"
+}
+
+dependencies {
+  compile "org.scala-lang:scala-library:$scalaVersion"
+  compile "org.scala-lang:scala-compiler:$scalaVersion"
+
+  testCompile 'org.scalatest:scalatest_2.10:2.0.RC2'
+  testCompile 'junit:junit:4.11'
+}
+
+test {
+  reports.junitXml.enabled = false 
+  reports.html.enabled = false
+}
