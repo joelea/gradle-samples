@@ -1,0 +1,23 @@
+apply plugin: 'maven'
+
+task addArtifactoryPublishTargets << {
+  ext {
+    user = System.console().readLine("\nusername: ")
+    pass = System.console().readPassword("password: ").toString()
+  }
+
+  allprojects {
+    uploadArchives {
+      repositories {
+        mavenDeployer {
+          repository(url: "http://localhost:8081/artifactory/libs-release-local") {
+            authentication(userName: user, password: pass)
+          }
+        }
+      }
+    }
+  }
+
+}
+
+uploadArchives.dependsOn addArtifactoryPublishTargets

@@ -1,0 +1,7 @@
+apply plugin: 'maven'
+
+repositories {
+  maven {
+    url("localhost:8081/artifactory/libs-release")
+  }
+}
